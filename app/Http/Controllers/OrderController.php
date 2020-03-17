@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderInvoice;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,6 +16,17 @@ class OrderController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     * Display a listing of all order invoices.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function invoicing() {
+        $invoices = OrderInvoice::paginate(25);
+
+        return view('pages.orders.invoices.index')->with('invoices', $invoices);
     }
 
     /**
@@ -82,4 +94,5 @@ class OrderController extends Controller
     {
         //
     }
+
 }
