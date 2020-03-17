@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', 'HomeController@index')->name('home.index');
 
+Route::get('orders/invoicing', 'OrderController@invoicing');
 Route::resource('orders', 'OrderController');
 
 Route::resource('customers', 'CustomerController');
