@@ -21,7 +21,7 @@
 <body>
 <div id="app">
 
-    @include('layouts.navbar')
+    @include('layouts.nav')
 
     <main class="py-4">
 
