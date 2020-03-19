@@ -49,52 +49,65 @@
                 </div>
                 <br/>
 
-                <form method="POST" action="{{ route('orders.products.store', $order) }}">
-                    @csrf
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Product Toevoegen</h4>
-                            <div class="form-group">
-                                <label for="product">Product</label>
-                                <select class="form-control selectpicker" id="product" name="product_id" data-live-search="true" title="Kies een product" onchange="productSelected(this.value)">
-                                    <option disabled selected>Kies een product</option>
-                                    @foreach($products as $product)
-                                        <option id="product{{ $product->id }}" value="{{ $product->id }}" data-price="{{ $product->price }}" data-stock="{{ $product->stock }}" data-order-quantity="{{ $product->order_quantity }}">{{ $product->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                @if (!$order->hasInvoice())
+                    <form method="POST" action="{{ route('orders.products.store', $order) }}">
+                        @csrf
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Product Toevoegen</h4>
+                                <div class="form-group">
+                                    <label for="product">Product</label>
+                                    <select class="form-control selectpicker" id="product" name="product_id" data-live-search="true" title="Kies een product" onchange="productSelected(this.value)">
+                                        <option disabled selected>Kies een product</option>
+                                        @foreach($products as $product)
+                                            <option id="product{{ $product->id }}" value="{{ $product->id }}" data-price="{{ $product->price }}" data-stock="{{ $product->stock }}" data-order-quantity="{{ $product->order_quantity }}">{{ $product->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                            <div class="form-row">
-                                <div class="form-group col-6">
-                                    <label for="addressCity">Prijs</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">&euro;</div>
+                                <div class="form-row">
+                                    <div class="form-group col-6">
+                                        <label for="addressCity">Prijs</label>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">&euro;</div>
+                                            </div>
+                                            <input type="text" class="form-control" id="productPrice" disabled>
                                         </div>
-                                        <input type="text" class="form-control" id="productPrice" disabled>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="addressState">Aantal</label>
+                                        <input type="number" class="form-control" id="productAmount" name="quantity" value="0">
                                     </div>
                                 </div>
-                                <div class="form-group col-6">
-                                    <label for="addressState">Aantal</label>
-                                    <input type="number" class="form-control" id="productAmount" name="quantity" value="0">
-                                </div>
-                            </div>
 
-                            <div class="form-row">
-                                <div class="form-group col-6">
-                                    <label for="addressCity">Voorraad</label>
-                                    <input type="number" class="form-control" id="productStock" disabled>
+                                <div class="form-row">
+                                    <div class="form-group col-6">
+                                        <label for="addressCity">Voorraad</label>
+                                        <input type="number" class="form-control" id="productStock" disabled>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="addressCity">Minimaal Aantal</label>
+                                        <input type="number" class="form-control" id="productOrderQuantity" disabled>
+                                    </div>
                                 </div>
-                                <div class="form-group col-6">
-                                    <label for="addressCity">Minimaal Aantal</label>
-                                    <input type="number" class="form-control" id="productOrderQuantity" disabled>
-                                </div>
-                            </div>
 
-                            <input type="submit" class="btn btn-success" value="Toevoegen"/>
+                                <input type="submit" class="btn btn-success" value="Toevoegen"/>
+                            </div>
+                        </div>
+                    </form>
+                @else
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Factuur</h4>
+                            @if($order->order_invoice->paid)
+                                <p>Betaald</p>
+                            @else
+                                <p>Niet betaald</p>
+                            @endif
                         </div>
                     </div>
-                </form>
+                @endif
             </div>
 
             <div class="col-7">
