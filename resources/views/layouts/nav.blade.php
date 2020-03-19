@@ -10,13 +10,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
+                    <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Bestellingen') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('customers.index') }}">{{ __('Customers') }}</a>
+                    <a class="nav-link" href="{{ route('customers.index') }}">{{ __('Klanten') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('products.index') }}">{{ __('Products') }}</a>
+                    <a class="nav-link" href="{{ route('products.index') }}">{{ __('Producten') }}</a>
                 </li>
             </ul>
         </div>
