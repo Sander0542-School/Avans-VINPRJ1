@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Order;
+use App\Models\OrderProduct;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -32,12 +35,28 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'customer_id' => ['required', 'integer', 'exists:customers,id'],
+            'customer_address_id' => ['required', 'integer', 'exists:customer_addresses,id'],
+        ]);
+
+        $data = array_merge($data, [
+            'date' => now(),
+            'status' => 'processing',
+        ]);
+
+        $order = Order::create($data);
+
+        if ($order->exists) {
+            return redirect()->route('orders.show', $order)->with('message', 'Bestelling aangemaakt');
+        }
+
+        return redirect()->back()->with('message', 'De bestelling kon niet worden aanmaken');
     }
 
     /**
