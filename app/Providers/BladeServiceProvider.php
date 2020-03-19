@@ -27,5 +27,9 @@ class BladeServiceProvider extends ServiceProvider
         Blade::directive('money', function ($amount) {
             return "<?php echo '&euro;' . number_format($amount, 2); ?>";
         });
+
+        Blade::directive('date', function ($date) {
+            return "<?php echo date('d-m-Y', strtotime($date)); ?>";
+        });
     }
 }

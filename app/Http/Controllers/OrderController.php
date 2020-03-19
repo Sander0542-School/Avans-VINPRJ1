@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\OrderInvoice;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -17,7 +18,19 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('pages.orders.index');
+        $orders = Order::orderByDesc('date')->paginate(25);
+        return view('pages.orders.index')->with('orders', $orders);
+    }
+
+    /**
+     * Display a listing of all order invoices.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function invoicing() {
+        $invoices = OrderInvoice::join('orders', 'order_invoices.order_id', '=', 'orders.id')->orderByDesc('orders.date')->paginate(25);
+
+        return view('pages.orders.invoices.index')->with('invoices', $invoices);
     }
 
     /**
@@ -203,4 +216,5 @@ class OrderController extends Controller
 
         return redirect()->back()->with('message', '"'.$product->name.'" kon niet van de bestelling verwijderd worden');
     }
+
 }
