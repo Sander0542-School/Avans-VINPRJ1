@@ -47,16 +47,31 @@ class Order extends Model
         'status',
     ];
 
+    /**
+     * Whether the order has a invoice
+     *
+     * @return bool
+     */
     public function hasInvoice()
     {
         return $this->order_invoice != null;
     }
 
+    /**
+     * Get the discount of the customer based on the year of the order
+     *
+     * @return int
+     */
     public function getCustomerDiscountAttribute()
     {
         return $this->customer->customer_discounts()->where('year', $this->date->year - 1)->first()->discount ?? 0;
     }
 
+    /**
+     * Get the discount based on the subtotal of the order
+     *
+     * @return int
+     */
     public function getDiscountAttribute()
     {
         $subtotal = $this->subtotal;
@@ -68,6 +83,11 @@ class Order extends Model
         return 0;
     }
 
+    /**
+     * Get the subtotal price of the order
+     *
+     * @return mixed
+     */
     public function getSubtotalAttribute()
     {
         return $this->products->sum(function ($product) {
@@ -75,6 +95,11 @@ class Order extends Model
         });
     }
 
+    /**
+     * Get the total price based on the subtotal and discounts
+     *
+     * @return float|int
+     */
     public function getTotalAttribute()
     {
         $subtotal = $this->subtotal;
