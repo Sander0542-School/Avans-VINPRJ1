@@ -22,9 +22,11 @@ $factory->afterCreating(Order::class, function (Order $order, Faker $faker) {
         'order_id' => $order->id
     ]);
 
-    factory(OrderInvoice::class)->create([
-        'order_id' => $order->id
-    ]);
+    if ($faker->boolean) {
+        factory(OrderInvoice::class)->create([
+            'order_id' => $order->id
+        ]);
+    }
 
     factory(OrderNote::class, $faker->numberBetween(5,10))->create([
         'order_id' => $order->id
