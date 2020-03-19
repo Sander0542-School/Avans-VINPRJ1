@@ -62,12 +62,14 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Order $order
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Order $order)
     {
-        //
+        $products = Product::whereNotIn('id', $order->products->pluck('id'))->get();
+
+        return view('pages.orders.show')->with('order', $order)->with('products', $products);
     }
 
     /**
