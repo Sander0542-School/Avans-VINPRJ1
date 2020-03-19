@@ -140,4 +140,11 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class, 'order_products')->withPivot('id', 'price', 'quantity');
     }
+
+    public function delete()
+    {
+        OrderProduct::whereOrderId($this->id)->delete();
+
+        return parent::delete();
+    }
 }
