@@ -14,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $Customers = Customer::paginate(25);
+        return view('pages.customers.index')->with('customers', $Customers);
     }
 
     /**
@@ -24,7 +25,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.customers.create');
     }
 
     /**
