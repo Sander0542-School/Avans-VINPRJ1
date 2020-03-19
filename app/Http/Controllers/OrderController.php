@@ -98,6 +98,11 @@ class OrderController extends Controller
                 ->with('message', '"'.$product->name.'" is moet minimaal '.$product->order_quantity.' keer besteld worden');
         }
 
+        if ($data['quantity'] > $product->stock) {
+            return redirect()->back()
+                ->with('message', 'van "'.$product->name.'" zijn er nog '.$product->stock.' op voorraad');
+        }
+
         $data = array_merge($data, [
             'order_id' => $order->id,
             'price' => $product->price,
@@ -137,6 +142,11 @@ class OrderController extends Controller
         if ($data['quantity'] < $product->order_quantity) {
             return redirect()->back()
                 ->with('message', '"'.$product->name.'" is moet minimaal '.$product->order_quantity.' keer besteld worden');
+        }
+
+        if ($data['quantity'] > $product->stock) {
+            return redirect()->back()
+                ->with('message', 'van "'.$product->name.'" zijn er nog '.$product->stock.' op voorraad');
         }
 
         if ($orderProduct != null) {
