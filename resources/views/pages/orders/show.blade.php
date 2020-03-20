@@ -101,9 +101,9 @@
                         <div class="card-body">
                             <h4 class="card-title">Factuur</h4>
                             @if($order->order_invoice->paid)
-                                <p>Betaald</p>
+                                <p class="text-success">Deze factuur is reeds betaald!</p>
                             @else
-                                <p>Niet betaald</p>
+                                <p class="text-danger">Deze factuur is nog niet betaald!</p>
                             @endif
                         </div>
                     </div>
