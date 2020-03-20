@@ -37,7 +37,7 @@
             <tbody>
             @if ($invoices != null)
                 @foreach ($invoices as $invoice)
-                    <tr class="clickable" onclick="">
+                    <tr>
                         <th scope="row">{{ $invoice->order->id }}</th>
                         <td>{{ $invoice->order->customer->name }}</td>
                         <td>@money($invoice->order->total)</td>
