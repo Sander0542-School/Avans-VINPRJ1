@@ -26,10 +26,11 @@
                         <th scope="col">Naam</th>
                         <th scope="col">Prijs</th>
                         <th scope="col">Voorraad</th>
+                        <th scope="col">Acties</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @if (isset($products))
+                    @if ($products)
                         @foreach ($products as $product)
                             <tr>
                                 <th scope="row">{{ $product->id }}</th>
@@ -37,6 +38,7 @@
                                 <th scope="row">{{ $product->name }}</th>
                                 <th scope="row">@money($product->price)</th>
                                 <th scope="row" class="text-{{ $product->stock < $product->minimum_stock ? 'danger' : 'default' }}">{{ $product->stock }}</th>
+                                <th scope="row"><a class="btn btn-primary" href="{{ route('products.show',  $product->id) }}"><i class="fa fa-eye"></i></a></th>
                             </tr>
                         @endforeach
                     @else
