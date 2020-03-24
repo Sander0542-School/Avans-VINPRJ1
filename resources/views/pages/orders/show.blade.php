@@ -96,6 +96,18 @@
                             </div>
                         </div>
                     </form>
+
+                    <br />
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Factuur aanmaken</h4>
+                            <form method="POST" action="{{ route('orders.invoices.create', $order) }}">
+                                @csrf
+                                <input type="submit" class="btn btn-success" value="Aanmaken"/>
+                            </form>
+                        </div>
+                    </div>
                 @else
                     <div class="card">
                         <div class="card-body">
