@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\CustomerContact;
 use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class ContactsController extends Controller
 {
@@ -35,9 +36,9 @@ class ContactsController extends Controller
      * @param  \App\Models\CustomerContact  $customerContact
      * @return \Illuminate\Http\Response
      */
-    public function show(CustomerContact $customerContact)
+    public function show(Customer $customer, CustomerContact $contact)
     {
-        return view('pages.customers.contacts.show')->with('customerContact', $customerContact);
+        return view('pages.customers.contacts.show')->with('contact', $contact);
     }
 
     /**

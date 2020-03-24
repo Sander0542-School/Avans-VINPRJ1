@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                {{dump($customerAddress)}}
+                {{dump($address)}}
             </div>
         </div>
     </div>

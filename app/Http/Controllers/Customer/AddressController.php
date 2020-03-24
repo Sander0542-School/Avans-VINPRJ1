@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\CustomerAddress;
 use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class AddressController extends Controller
 {
@@ -35,9 +36,9 @@ class AddressController extends Controller
      * @param  \App\Models\CustomerAddress  $customerAddress
      * @return \Illuminate\Http\Response
      */
-    public function show(CustomerAddress $customerAddress)
+    public function show(Customer $customer, CustomerAddress $address)
     {
-        return view('pages.customers.address.show')->with('customerAddress', $customerAddress);
+        return view('pages.customers.address.show')->with('address', $address);
     }
 
     /**
