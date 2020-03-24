@@ -50,9 +50,9 @@ class OrderController extends Controller
 
         if ($order_invoice->exists) {
             return redirect()->back()->with('message', 'Factuur is aangemaakt!');
-        } else {
-            return redirect()->back()->with('message', 'Factuur is niet aangemaakt!');
         }
+        
+        return redirect()->back()->with('message', 'Factuur is niet aangemaakt!');
     }
 
     /**
