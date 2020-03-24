@@ -18,7 +18,7 @@
 
         <div class="row">
             <div class="col-6">
-                <h2 class="text-center">Adressen</h2>
+                <h2 class="text-center">Adressen <a href="{{ route('customers.address.create', $customer) }}" class="btn btn-primary">Maak nieuwe</a></h2> 
                 <table class="table table-striped table-hover" id="customers">
                     <thead class="thead-dark">
                     <tr>
@@ -50,7 +50,7 @@
             </div>
 
             <div class="col-6">
-                <h2 class="text-center">Klant contacten</h2>
+                <h2 class="text-center">Klant contacten <a href="{{ route('customers.contacts.create', $customer) }}" class="btn btn-primary">Maak nieuwe</a></h2>
                 <table class="table table-striped table-hover" id="customers">
                     <thead class="thead-dark">
                     <tr>
