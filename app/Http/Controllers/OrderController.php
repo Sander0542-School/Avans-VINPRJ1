@@ -18,7 +18,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderByDesc('date')->paginate(25);
+        $orders = Order::orderByDesc('date')->leftJoin('order_invoices', 'orders.id', '=', 'order_invoices.order_id')
+            ->whereNull('order_invoices.paid')->paginate(25);
+
         return view('pages.orders.index')->with('orders', $orders);
     }
 
@@ -27,10 +29,30 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function invoicing() {
-        $invoices = OrderInvoice::join('orders', 'order_invoices.order_id', '=', 'orders.id')->orderByDesc('orders.date')->paginate(25);
+    public function invoices()
+    {
+        $invoices = OrderInvoice::join('orders', 'order_invoices.order_id', '=', 'orders.id')
+            ->orderByDesc('orders.date')->paginate(25);
 
         return view('pages.orders.invoices.index')->with('invoices', $invoices);
+    }
+
+    /**
+     * @param \App\Models\Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function createInvoice(Order $order)
+    {
+        $order_invoice = OrderInvoice::create([
+            "order_id" => $order->id,
+            "paid" => 0,
+        ]);
+
+        if ($order_invoice->exists) {
+            return redirect()->back()->with('message', 'Factuur is aangemaakt!');
+        }
+        
+        return redirect()->back()->with('message', 'Factuur is niet aangemaakt!');
     }
 
     /**
@@ -216,5 +238,4 @@ class OrderController extends Controller
 
         return redirect()->back()->with('message', '"'.$product->name.'" kon niet van de bestelling verwijderd worden');
     }
-
 }

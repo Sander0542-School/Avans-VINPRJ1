@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Bestellingen aanmaken</h4>
-                        <a href="{{ route('orders.create') }}" class="btn btn-primary">Openen</a>
+                        <a href="{{ route('orders.create') }}" class="btn btn-primary"><i class="fa fa-eye"></i> Openen</a>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Bestellingen weergeven</h4>
-                        <a href="{{ route('orders.index') }}" class="btn btn-primary">Openen</a>
+                        <a href="{{ route('orders.index') }}" class="btn btn-primary"><i class="fa fa-eye"></i> Openen</a>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
             <tbody>
             @if ($invoices != null)
                 @foreach ($invoices as $invoice)
-                    <tr class="clickable" onclick="">
+                    <tr>
                         <th scope="row">{{ $invoice->order->id }}</th>
                         <td>{{ $invoice->order->customer->name }}</td>
                         <td>@money($invoice->order->total)</td>
@@ -46,7 +46,7 @@
                         @else
                             <td class="text-danger">Nee</td>
                         @endif
-                        <td><a href="{{ route('orders.show', $invoice->order) }}" class="btn btn-primary">&rArr;</a></td>
+                        <td><a href="{{ route('orders.show', $invoice->order) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 @endforeach
             @else

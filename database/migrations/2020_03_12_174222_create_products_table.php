@@ -26,7 +26,7 @@ class CreateProductsTable extends Migration
             $table->integer('order_quantity');
             $table->decimal('packaging_length', 5);
             $table->decimal('packaging_width', 5);
-            $table->decimal('packaging_heigth', 5);
+            $table->decimal('packaging_height', 5);
             $table->integer('consumer_packages');
             $table->string('packaging_type');
         });
