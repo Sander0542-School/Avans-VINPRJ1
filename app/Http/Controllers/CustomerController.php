@@ -14,7 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $Customers = Customer::paginate(25);
+        $Customers = Customer::orderBy('name')->paginate(25);
         return view('pages.customers.index')->with('customers', $Customers);
     }
 
@@ -36,7 +36,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -47,7 +47,9 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        // $customerd = Product::where('id', $customer->pluck('id'))->get();
+        // ->with('customer', $customerd);
+        return view('pages.customers.show');
     }
 
     /**
