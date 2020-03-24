@@ -43,12 +43,16 @@ class OrderController extends Controller
      */
     public function createInvoice(Order $order)
     {
-        $order_invoice = new OrderInvoice;
-        $order_invoice->order_id = $order->id;
-        $order_invoice->paid = 0;
-        $order_invoice->save();
+        $order_invoice = OrderInvoice::create([
+            "order_id" => $order->id,
+            "paid" => 0,
+        ]);
 
-        return redirect()->back()->with('message', 'Factuur is aangemaakt!');
+        if ($order_invoice->exists) {
+            return redirect()->back()->with('message', 'Factuur is aangemaakt!');
+        } else {
+            return redirect()->back()->with('message', 'Factuur is niet aangemaakt!');
+        }
     }
 
     /**
