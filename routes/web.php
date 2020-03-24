@@ -25,3 +25,4 @@ Route::resource('orders', 'OrderController')->except(['edit', 'update']);
 Route::resource('customers', 'CustomerController');
 
 Route::resource('products', 'ProductController');
+Route::get('products/{product}/suppliers', 'ProductController@productSuppliers')->name('products.suppliers');

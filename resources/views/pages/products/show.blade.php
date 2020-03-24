@@ -9,13 +9,13 @@
                         <h4 class="card-title">Product voorraad</h4>
                         <div class="form-group">
                             <label for="productStock">Huidige voorraad</label>
-                            <input type="text" class="form-control text-{{ $product->stock < $product->minimum_stock ? 'danger' : 'primary' }}" id="productStock" value="{{ $product->stock }}" disabled>
+                            <input type="text" class="form-control text-{{ $product->stock < $product->minimum_stock ? 'danger' : 'default' }}" id="productStock" value="{{ $product->stock }}" disabled>
                         </div>
                         <div class="form-group">
                             <label for="productMinStock">Gewenste voorraad</label>
                             <input type="text" class="form-control" id="productMinStock" value="{{ $product->minimum_stock }}" disabled>
                         </div>
-                        <a class="btn btn-success" href="#">Product bijbestellen</a>
+                        <a class="btn btn-primary" href="{{ route('products.suppliers', $product) }}">Product bijbestellen</a>
                     </div>
                 </div>
                 <br>
@@ -25,17 +25,17 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label for="productPackagingLength">Verpakking lengte</label>
-                                <input type="number" class="form-control" id="productPackagingLength" value="{{ $product->packaging_length }}" disabled>
+                                <input type="text" class="form-control" id="productPackagingLength" value="@centimeter($product->packaging_length)" disabled>
                             </div>
                             <div class="form-group col-6">
                                 <label for="productPackagingWidth">Verpakking breedte</label>
-                                <input type="number" class="form-control" id="productPackagingWidth" value="{{ $product->packaging_width }}" disabled>
+                                <input type="text" class="form-control" id="productPackagingWidth" value="@centimeter($product->packaging_width)" disabled>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label for="productPackagingHeight">Verpakking hoogte</label>
-                                <input type="number" class="form-control" id="productPackagingHeight" value="{{ $product->packaging_height }}" disabled>
+                                <input type="text" class="form-control" id="productPackagingHeight" value="@centimeter($product->packaging_height)" disabled>
                             </div>
                             <div class="form-group col-6">
                                 <label for="productPackagingType">Verpakking type</label>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group">
                             <label for="productLongDescription">Lange Beschrijving</label>
-                            <textarea class="form-control" id="productLongDescription" rows="3" disabled>{{ $product->long_description }}</textarea>
+                            <textarea class="form-control" id="productLongDescription" rows="4" disabled>{{ $product->long_description }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="productActiveSubstances">Actieve stoffen</label>

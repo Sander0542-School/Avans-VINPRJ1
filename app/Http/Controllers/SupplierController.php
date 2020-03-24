@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\SupplierProduct;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('name')->orderBy('price')->paginate(25);
-        return view('pages.products.index')->with('products', $products);
+        $suppliers = Supplier::orderBy('name')->paginate('25');
+        return view('pages.products.suppliers.index')->with('suppliers', $suppliers);
     }
 
     /**
@@ -26,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('pages.products.create');
+        //
     }
 
     /**
@@ -43,21 +42,21 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        return view('pages.products.show')->with('product', $product);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
         //
     }
@@ -66,10 +65,10 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,17 +76,11 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
         //
-    }
-
-    public function productSuppliers(Product $product)
-    {
-        $supplierProducts = SupplierProduct::where('product_id', $product->id)->orderBy('price')->paginate('25');
-        return view('pages.products.suppliers.index')->with('supplierProducts', $supplierProducts);
     }
 }
