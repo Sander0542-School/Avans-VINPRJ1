@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Product
- * 
+ *
  * @property int $id
  * @property string $name
  * @property int $ordercode
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $packaging_heigth
  * @property int $consumer_packages
  * @property string $packaging_type
- * 
+ *
  * @property Collection|Order[] $orders
  * @property Collection|SupplierOrder[] $supplier_orders
  * @property Collection|Supplier[] $suppliers
@@ -48,7 +48,7 @@ class Product extends Model
 		'order_quantity' => 'int',
 		'packaging_length' => 'float',
 		'packaging_width' => 'float',
-		'packaging_heigth' => 'float',
+		'packaging_height' => 'float',
 		'consumer_packages' => 'int'
 	];
 
@@ -65,7 +65,7 @@ class Product extends Model
 		'order_quantity',
 		'packaging_length',
 		'packaging_width',
-		'packaging_heigth',
+		'packaging_height',
 		'consumer_packages',
 		'packaging_type'
 	];
