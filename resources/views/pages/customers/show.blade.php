@@ -12,28 +12,65 @@
         
         <hr />
 
-        <div class="row text-center">
+        <div class="row">
             <div class="col-6">
-                <div class="form-group">
-                    <label for="customer_id">Adressen</label>
-
-                    <select class="form-control selectpicker" id="customer_id" name="customer_id" data-live-search="true" onchange="customerSelected(this.value)" title="Kies een adress" required>
-                        @foreach($customer->customer_addresses as $adres)
-                            <option value="{{ $adres->id }}">{{ $adres->name }}</option>
+                <h2 class="text-center">Adressen</h2>
+                <table class="table table-striped table-hover" id="customers">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Huisnummer</th>
+                        <th scope="col">Stad</th>
+                        <th scope="col">Land</th>
+                        <th scope="col">Openen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if ($customer->customer_addresses != null)
+                        @foreach ($customer->customer_addresses as $address)
+                            <tr>
+                                <th scope="row">{{ $address->id }}</th>
+                                <td>{{ $address->number }}</td>
+                                <td>{{ $address->city }}</td>
+                                <td>{{ $address->country }}</td>
+                                <td><a href="{{ route('customers.address.show', [$customer, $address]) }}" class="btn btn-primary">&rArr;</a></td>
+                            </tr>
                         @endforeach
-                    </select>
-                </div>
+                    @else
+                        <tr>
+                            <td colspan="8">Er zijn geen klant adressen</td>
+                        </tr>
+                    @endif
+                    </tbody>
+                </table>
             </div>
 
             <div class="col-6">
-                <div class="form-group">
-                    <label for="customer_id">Contacten</label>
-                    <select class="form-control selectpicker" id="customer_id" name="customer_id" data-live-search="true" onchange="customerSelected(this.value)" title="Kies een adress" required>
-                        @foreach($customer->customer_contacts as $contacts)
-                            <option value="{{ $contacts->id }}">{{ $contacts->name }}</option>
+                <h2 class="text-center">Klant contacten</h2>
+                <table class="table table-striped table-hover" id="customers">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Naam</th>
+                        <th scope="col">Openen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if ($customer->customer_addresses != null)
+                        @foreach ($customer->customer_contacts as $contact)
+                            <tr>
+                                <th scope="row">{{ $contact->id }}</th>
+                                <td>{{ $contact->name }}</td>
+                                <td><a href="{{ route('customers.contacts.show', [$customer, $contact]) }}" class="btn btn-primary">&rArr;</a></td>
+                            </tr>
                         @endforeach
-                    </select>
-                </div>
+                    @else
+                        <tr>
+                            <td colspan="8">Er zijn geen klant adressen</td>
+                        </tr>
+                    @endif
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -22,6 +22,11 @@ Route::put('orders/{order}/products/{product}', 'OrderController@updateProduct')
 Route::delete('orders/{order}/products/{product}', 'OrderController@destroyProduct')->name('orders.products.destroy');
 Route::resource('orders', 'OrderController')->except(['edit', 'update']);
 
+Route::prefix('customers/{customer}')->name('customers.')->namespace('Customer')->group(function() {
+  Route::resource('address', 'AddressController');
+  Route::resource('contacts', 'ContactsController');
+});
+
 Route::resource('customers', 'CustomerController');
 
 Route::resource('products', 'ProductController');
