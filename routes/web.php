@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', 'HomeController@index')->name('home.index');
 
-Route::get('orders/invoicing', 'OrderController@invoicing')->name('orders.invoicing');
+Route::post('invoices/{order}/create', 'OrderController@createInvoice')->name('orders.invoices.create');
+Route::get('invoices', 'OrderController@invoices')->name('orders.invoices');
+
 Route::resource('orders', 'OrderController');
 Route::post('orders/{order}/products', 'OrderController@storeProduct')->name('orders.products.store');
 Route::put('orders/{order}/products/{product}', 'OrderController@updateProduct')->name('orders.products.update');
