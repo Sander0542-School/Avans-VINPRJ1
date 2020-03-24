@@ -29,8 +29,10 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function invoicing() {
-        $invoices = OrderInvoice::join('orders', 'order_invoices.order_id', '=', 'orders.id')->orderByDesc('orders.date')->paginate(25);
+    public function invoices()
+    {
+        $invoices = OrderInvoice::join('orders', 'order_invoices.order_id', '=', 'orders.id')
+            ->orderByDesc('orders.date')->paginate(25);
 
         return view('pages.orders.invoices.index')->with('invoices', $invoices);
     }
