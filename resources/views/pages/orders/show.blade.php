@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Bestelling Bewerken')])
+@extends('layouts.app', ['title' => 'Bestelling Bewerken ('.$order->id.')'])
 
 @section('content')
     <div class="container">

@@ -44,7 +44,7 @@
                                 <td>{{ $order->customer->name }}</td>
                                 <td>@date($order->date)</td>
                                 <td>@money($order->total)</td>
-                                <td><a href="{{ route('orders.show', $order) }}" class="btn btn-primary">&rArr;</a></td>
+                                <td><a href="{{ route('orders.show', $order) }}" class="btn btn-primary"><i class="fas fa-play"></i></a></td>
                             </tr>
                         @endforeach
                     @else
