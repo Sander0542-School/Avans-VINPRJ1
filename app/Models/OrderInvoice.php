@@ -31,7 +31,8 @@ class OrderInvoice extends Model
 	];
 
 	protected $fillable = [
-		'paid', 'order_id'
+		'paid',
+		'order_id'
 	];
 
 	public function order()
