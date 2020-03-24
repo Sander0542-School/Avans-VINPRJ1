@@ -14,8 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $Customers = Customer::orderBy('name')->paginate(25);
-        return view('pages.customers.index')->with('customers', $Customers);
+        $customers = Customer::orderBy('name')->paginate(25);
+        return view('pages.customers.index')->with('customers', $customers);
     }
 
     /**
@@ -36,7 +36,17 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'name' => ['required', 'string'],
+        ]);
 
+        $customer = Customer::create($data);
+
+        if ($customer->exists) {
+            return redirect()->route('customers.show', $customer)->with('message', 'Het bedrijf is aangemaakt');
+        }
+
+        return redirect()->back()->with('message', 'Het bedrijf kon niet aangemaakt worden');
     }
 
     /**
@@ -47,9 +57,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        // $customerd = Product::where('id', $customer->pluck('id'))->get();
-        // ->with('customer', $customerd);
-        return view('pages.customers.show');
+        return view('pages.customers.show')->with('customer', $customer);
     }
 
     /**
