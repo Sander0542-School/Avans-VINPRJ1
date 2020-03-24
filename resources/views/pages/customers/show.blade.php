@@ -4,9 +4,13 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-8 offset-2">
-                <h1>Bedrijf {{ $customer->name }}</h1>
-                <input type="text" class="form-control" value="{{ $customer->name }}" id="bNaam">
-                <input type="submit" class="btn btn-info mt-2" value="opslaan"/>
+                <form method="POST" action="{{ route('customers.update', $customer) }}">
+                    @csrf
+                    @method('PUT')
+                    <h1>Bedrijf {{ $customer->name }}</h1>
+                    <input type="text" name="name" class="form-control" value="{{ $customer->name }}" id="bedrijf_naam">
+                    <input type="submit" class="btn btn-info mt-2" value="opslaan"/>
+                </form>
             </div>
         </div>
         

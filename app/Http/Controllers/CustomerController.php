@@ -80,7 +80,20 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string'],
+        ]);
+
+        $customerDatabase = Customer::whereId($customer->id)->first();
+
+        if ($customerDatabase != null) {
+            if ($customerDatabase->update($data)) {
+                return redirect()->route('customers.show', $customer)
+                    ->with('message', 'de klanten naam is geupdate');
+            }
+        }
+
+        return redirect()->back()->with('message', 'De klant naam kon niet geupdate worden');
     }
 
     /**
