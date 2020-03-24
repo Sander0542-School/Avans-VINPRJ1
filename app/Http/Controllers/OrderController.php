@@ -38,6 +38,20 @@ class OrderController extends Controller
     }
 
     /**
+     * @param \App\Models\Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function createInvoice(Order $order)
+    {
+        $order_invoice = new OrderInvoice;
+        $order_invoice->order_id = $order->id;
+        $order_invoice->paid = 0;
+        $order_invoice->save();
+
+        return redirect()->back()->with('message', 'Factuur is aangemaakt!');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
