@@ -18,7 +18,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderByDesc('date')->leftJoin('order_invoices', 'orders.id', '=', 'order_invoices.order_id')->whereNull('order_invoices.paid')->paginate(25);
+        $orders = Order::orderByDesc('date')->leftJoin('order_invoices', 'orders.id', '=', 'order_invoices.order_id')
+            ->whereNull('order_invoices.paid')->paginate(25);
+
         return view('pages.orders.index')->with('orders', $orders);
     }
 
