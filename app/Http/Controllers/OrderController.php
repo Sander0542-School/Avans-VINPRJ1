@@ -234,5 +234,4 @@ class OrderController extends Controller
 
         return redirect()->back()->with('message', '"'.$product->name.'" kon niet van de bestelling verwijderd worden');
     }
-
 }
