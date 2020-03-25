@@ -19,7 +19,7 @@
                             <label for="jobtitle">Functietitel</label>
                             <input type="text" name="jobtitle" class="form-control" id="contactTitle">
     
-                            <input type="submit" class="btn btn-info mt-2" value="aanmaken"/>
+                            <input type="submit" class="btn btn-info mt-2" value="Toevoegen"/>
                         </div>
                     </div>
                 </form>

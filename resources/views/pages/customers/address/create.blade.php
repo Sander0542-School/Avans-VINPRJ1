@@ -31,7 +31,7 @@
                                 </div>
                             </div>
 
-                            <input type="submit" class="btn btn-info mt-2" value="aanmaken"/>
+                            <input type="submit" class="btn btn-info mt-2" value="Toevoegen"/>
                         </div>
                     </div>
                 </form>
