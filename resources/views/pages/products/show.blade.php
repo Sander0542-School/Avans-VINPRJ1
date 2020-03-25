@@ -48,7 +48,7 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Product gegevens</h4>
+                        <h4 class="card-title">Product gegevens <a href="{{ route('products.edit', $product) }}" class="btn btn-warning pull-right"><i class="fa fa-pencil"></i></a></h4>
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label for="productName">Naam</label>

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductAddStock;
+use App\Http\Requests\UpdateProduct;
 use App\Models\Product;
-use App\Models\Supplier;
 use App\Models\SupplierOrder;
 use App\Models\SupplierProduct;
 use Carbon\Carbon;
@@ -63,30 +63,21 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('pages.products.edit')->with('product', $product);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\UpdateProduct  $request
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProduct $request, Product $product)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        //
+        if ($product->update($request->validated())) {
+            return redirect()->route('products.show', $product->id)->with('message', 'Het product is geüpdate');
+        }
     }
 
     /**
@@ -126,7 +117,7 @@ class ProductController extends Controller
         $supplierOrder = new SupplierOrder();
         $supplierOrder->supplier_id = $request->input('supplierId');
         $supplierOrder->product_id = $request->input('productId');
-        $supplierOrder->amount = $request->input('productCount');
+        $supplierOrder->quantity = $request->input('productCount');
         $supplierOrder->price = $parsedPrice;
         $supplierOrder->date = Carbon::now()->toDate();
         $supplierOrder->save();

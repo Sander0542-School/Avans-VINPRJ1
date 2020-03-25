@@ -26,6 +26,6 @@ Route::resource('orders', 'OrderController')->except(['edit', 'update']);
 
 Route::resource('customers', 'CustomerController');
 
-Route::resource('products', 'ProductController');
+Route::resource('products', 'ProductController')->except(['destroy']);
 Route::get('products/{product}/suppliers', 'ProductController@productSuppliers')->name('products.suppliers');
 Route::post('products/{product}/addStock', 'ProductController@addStock')->name('products.addStock');
