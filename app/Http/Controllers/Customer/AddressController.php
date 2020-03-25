@@ -24,9 +24,9 @@ class AddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Customer $customer)
     {
-        return view('pages.customers.address.create');
+        return view('pages.customers.address.create')->with('customer', $customer);
     }
 
     /**
@@ -35,9 +35,28 @@ class AddressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Customer $customer)
     {
-        //
+        $data = $request->validate([
+            'street' => ['required', 'string'],
+            'number' => ['required', 'integer'],
+            'country' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'state' => ['required', 'string'],
+            'zipcode' => ['required', 'string'],
+        ]);
+
+        $data = array_merge($data, [
+            'customer_id' => $customer->id
+        ]);
+
+        $customerAddress = CustomerAddress::create($data);
+
+        if ($customerAddress->exists) {
+            return redirect()->route('customers.show', $customer)->with('message', 'Het adres is toegevoegd');
+        }
+
+        return redirect()->back()->with('message', 'Het adres kon niet worden toegevoegd');
     }
 
     /**

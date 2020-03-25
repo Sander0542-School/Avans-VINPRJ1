@@ -24,9 +24,9 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Customer $customer)
     {
-        return view('pages.customers.contacts.create');
+        return view('pages.customers.contacts.create')->with('customer', $customer);
     }
 
     /**
@@ -35,9 +35,26 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Customer $customer)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'phone' => ['required', 'string'],
+            'jobtitle' => ['required', 'string'],
+        ]);
+
+        $data = array_merge($data, [
+            'customer_id' => $customer->id
+        ]);
+
+        $customerContact = CustomerContact::create($data);
+
+        if ($customerContact->exists) {
+            return redirect()->route('customers.show', $customer)->with('message', 'Het contact is toegevoegd');
+        }
+
+        return redirect()->back()->with('message', 'Het contact kon niet worden toegevoegd');
     }
 
     /**
