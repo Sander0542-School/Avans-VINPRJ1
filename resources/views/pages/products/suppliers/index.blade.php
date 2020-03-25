@@ -2,16 +2,6 @@
 
 @section('content')
     <div class="container">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <p class="mb-0">De volgende errors vinden plaats bij het bijbestellen van een product:</p>
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }} </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <div class="row">
             <div class="col-8">
                 <div class="card">
