@@ -7,7 +7,7 @@
                 <form method="POST" action="{{ route('customers.update', $customer) }}">
                     @csrf
                     @method('PUT')
-                    <h1>Bedrijf {{ $customer->name }}</h1>
+                    <h1>{{ $customer->name }}</h1>
                     <input type="text" name="name" class="form-control" value="{{ $customer->name }}" id="bedrijf_naam">
                     <input type="submit" class="btn btn-info mt-2" value="Opslaan"/>
                 </form>
