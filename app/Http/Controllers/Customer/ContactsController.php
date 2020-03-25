@@ -83,7 +83,7 @@ class ContactsController extends Controller
             }
         }
 
-        return redirect()->back()->with('message', 'De klant contact kon niet geupdate worden');
+        return redirect()->back()->with('message', 'De gegevens van het contact konden niet bewerkt worden');
     }
 
     /**
