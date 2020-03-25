@@ -6,7 +6,7 @@
             <div class="col-8 offset-2">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Klant aanmaken</h4>
+                        <h4 class="card-title">Klant toevoegen</h4>
                         <a href="{{ route('customers.create') }}" class="btn btn-primary">Openen</a>
                     </div>
                 </div>
