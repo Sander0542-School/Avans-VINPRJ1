@@ -32,7 +32,7 @@
                                 </div>
                             </div>
 
-                            <input type="submit" class="btn btn-info mt-2" value="opslaan"/>
+                            <input type="submit" class="btn btn-info mt-2" value="Opslaan"/>
                         </div>
                     </div>
                 </form>
