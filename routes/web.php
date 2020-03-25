@@ -18,10 +18,12 @@ Route::get('', 'HomeController@index')->name('home.index');
 Route::post('invoices/{order}/create', 'OrderController@createInvoice')->name('orders.invoices.create');
 Route::get('invoices', 'OrderController@invoices')->name('orders.invoices');
 
-Route::resource('orders', 'OrderController');
-Route::post('orders/{order}/products', 'OrderController@storeProduct')->name('orders.products.store');
-Route::put('orders/{order}/products/{product}', 'OrderController@updateProduct')->name('orders.products.update');
-Route::delete('orders/{order}/products/{product}', 'OrderController@destroyProduct')->name('orders.products.destroy');
+Route::prefix('/orders/{order}')->name('orders.')->group(function () {
+    Route::post('products', 'OrderController@storeProduct')->name('products.store');
+    Route::put('products/{product}', 'OrderController@updateProduct')->name('products.update');
+    Route::delete('products/{product}', 'OrderController@destroyProduct')->name('products.destroy');
+});
+
 Route::resource('orders', 'OrderController')->except(['edit', 'update']);
 
 Route::resource('customers', 'CustomerController');
