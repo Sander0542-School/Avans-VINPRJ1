@@ -90,7 +90,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="8">Er zijn geen klant adressen</td>
+                            <td colspan="8">Er zijn geen contactten voor deze klant gevonden</td>
                         </tr>
                     @endif
                     </tbody>
