@@ -71,7 +71,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if ($customer->customer_addresses != null)
+                    @if ($customer->customer_addresses)
                         @foreach ($customer->customer_contacts as $contact)
                             <tr>
                                 <th scope="row">{{ $contact->id }}</th>
