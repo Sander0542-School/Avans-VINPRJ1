@@ -8,7 +8,7 @@
                     @csrf
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title text-center">Create new address</h4>
+                            <h4 class="card-title text-center">Adres toevoegen</h4>
                             <label for="addressStreet">Straat</label>
                             <input type="text" name="street" class="form-control" id="addressStreet">
                             <label for="addressNumber">huis nummer</label>
