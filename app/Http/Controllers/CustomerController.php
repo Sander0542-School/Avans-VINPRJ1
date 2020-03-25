@@ -47,7 +47,7 @@ class CustomerController extends Controller
             return redirect()->route('customers.show', $customer)->with('message', 'De klant is toegevoegd');
         }
 
-        return redirect()->back()->with('message', 'Het bedrijf kon niet aangemaakt worden');
+        return redirect()->back()->with('message', 'De klant kon niet worden toegevoegd');
     }
 
     /**
