@@ -19,7 +19,7 @@
                             <label for="contactTitle">Contact werk titel</label>
                             <input type="text" name="jobtitle" class="form-control" id="contactTitle" value="{{$contact->jobtitle}}">
     
-                            <input type="submit" class="btn btn-info mt-2" value="opslaan"/>
+                            <input type="submit" class="btn btn-info mt-2" value="Opslaan"/>
                         </div>
                     </div>
                 </form>
