@@ -12,7 +12,7 @@
                             <label for="addressCity">Naam</label>
                             <input type="text" name="name" class="form-control" id="bedrijf_naam">
     
-                            <input type="submit" class="btn btn-info mt-2" value="aanmaken"/>
+                            <input type="submit" class="btn btn-info mt-2" value="Toevoegen"/>
                         </div>
                     </div>
                 </form>
