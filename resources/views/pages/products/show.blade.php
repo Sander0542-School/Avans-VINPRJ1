@@ -15,7 +15,11 @@
                             <label for="productMinStock">Gewenste voorraad</label>
                             <input type="text" class="form-control" id="productMinStock" value="{{ $product->minimum_stock }}" disabled>
                         </div>
-                        <a class="btn btn-primary" href="{{ route('products.suppliers', $product) }}">Product bijbestellen</a>
+                        @if($product->hasSupplier())
+                            <a class="btn btn-primary" href="{{ route('products.suppliers', $product) }}">Product bijbestellen</a>
+                        @else
+                            <a class="btn btn-primary" href="{{ route('products.link', $product) }}">Product koppelen</a>
+                        @endif
                     </div>
                 </div>
                 <br>

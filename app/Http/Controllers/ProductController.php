@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductAddStock;
+use App\Http\Requests\ProductLinkSupplier;
+use App\Http\Requests\StoreProduct;
 use App\Http\Requests\UpdateProduct;
 use App\Models\Product;
+use App\Models\Supplier;
 use App\Models\SupplierOrder;
 use App\Models\SupplierProduct;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -36,12 +38,13 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreProduct  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProduct $request)
     {
-        //
+        Product::create($request->validated());
+        return redirect()->route('products.index')->with('message', 'Het product is succesvol aangemaakt.');
     }
 
     /**
@@ -126,5 +129,27 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()->route('products.show', $product->id)->with('message', $supplierOrder->amount . ' producten toegevoegd.');
+    }
+
+    /**
+     * Show page where you can connect a supplier to a product.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function link(Product $product)
+    {
+        $suppliers = Supplier::all();
+        return view('pages.products.suppliers.link')->with('suppliers', $suppliers)->with('product', $product);
+    }
+
+    public function linkSupplier(ProductLinkSupplier $request)
+    {
+        $SupplierProduct = new SupplierProduct();
+        $SupplierProduct->supplier_id = $request->supplier_id;
+        $SupplierProduct->product_id = $request->product_id;
+        $SupplierProduct->price = $request->price;
+        $SupplierProduct->save();
+
+        return redirect()->route('products.index')->with('message', 'Het product is gekoppeld aan een leverancier.');
     }
 }

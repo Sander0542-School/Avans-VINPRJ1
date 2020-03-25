@@ -30,4 +30,6 @@ Route::resource('customers', 'CustomerController');
 
 Route::resource('products', 'ProductController')->except(['destroy']);
 Route::get('products/{product}/suppliers', 'ProductController@productSuppliers')->name('products.suppliers');
+Route::get('products/{product}/link', 'ProductController@link')->name('products.link');
 Route::post('products/{product}/addStock', 'ProductController@addStock')->name('products.addStock');
+Route::post('products/{product}/linkSupplier', 'ProductController@linkSupplier')->name('products.linkSupplier');

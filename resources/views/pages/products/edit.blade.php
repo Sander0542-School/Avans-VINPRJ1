@@ -33,7 +33,7 @@
                             </div>
                             <div class="form-group col-4">
                                 <label for="productStock">Voorraad</label>
-                                <input type="number" class="form-control" name="stock" id="productStock" value="{{ $product->stock }}">
+                                <input type="number" class="form-control" name="stock" id="productStock" value="{{ $product->stock }}" readonly>
                             </div>
                             <div class="form-group col-4">
                                 <label for="productMinStock">Minimum voorraad</label>
