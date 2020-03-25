@@ -37,7 +37,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="8">Er zijn geen customers om geladen te worden !!</td>
+                            <td colspan="8">Er zijn geen klanten gevonden</td>
                         </tr>
                     @endif
                     </tbody>
