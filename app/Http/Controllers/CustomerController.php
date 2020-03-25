@@ -90,7 +90,7 @@ class CustomerController extends Controller
         if ($customerDatabase != null) {
             if ($customerDatabase->update($data)) {
                 return redirect()->route('customers.show', $customer)
-                    ->with('message', 'de klanten naam is geupdate');
+                    ->with('message', 'De gegevens van de klant zijn bewerkt');
             }
         }
 
