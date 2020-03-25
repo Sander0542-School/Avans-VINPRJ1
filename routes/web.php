@@ -26,3 +26,4 @@ Route::resource('customers', 'CustomerController');
 
 Route::resource('products', 'ProductController');
 Route::get('products/{product}/suppliers', 'ProductController@productSuppliers')->name('products.suppliers');
+Route::post('products/{product}/addStock', 'ProductController@addStock')->name('products.addStock');
