@@ -65,7 +65,7 @@ class ContactsController extends Controller
      */
     public function show(Customer $customer, CustomerContact $contact)
     {
-        return view('pages.customers.contacts.show')->with('contact', $contact);
+        return view('pages.customers.contacts.show')->with('customer', $customer)->with('contact', $contact);
     }
 
     /**
@@ -75,9 +75,25 @@ class ContactsController extends Controller
      * @param  \App\Models\CustomerContact  $customerContact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CustomerContact $customerContact)
+    public function update(Request $request, Customer $customer, CustomerContact $contact)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'phone' => ['required', 'string'],
+            'jobtitle' => ['required', 'string'],
+        ]);
+
+        $addressDatabase = CustomerContact::whereId($contact->id)->first();
+
+        if ($addressDatabase != null) {
+            if ($addressDatabase->update($data)) {
+                return redirect()->route('customers.show', $customer)
+                    ->with('message', 'Het klant contact is geupdate');
+            }
+        }
+
+        return redirect()->back()->with('message', 'De klant contact kon niet geupdate worden');
     }
 
     /**
@@ -86,8 +102,12 @@ class ContactsController extends Controller
      * @param  \App\Models\CustomerContact  $customerContact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CustomerContact $customerContact)
+    public function destroy(Customer $customer, CustomerContact $contact)
     {
-        //
+        if ($contact->delete()) {
+            return redirect()->route('customers.show', $customer)->with('message', 'Het klant contact is succesvol verwijderd');
+        }
+
+        return redirect()->route('customers.show', $customer)->with('message', 'Het klant contact kon niet worden verwijderd');
     }
 }

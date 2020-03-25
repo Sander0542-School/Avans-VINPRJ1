@@ -11,13 +11,13 @@
                         <div class="card-body">
                             <h4 class="card-title text-center">Contacten</h4>
                             <label for="name">Contact naam</label>
-                            <input type="text" name="contactName" class="form-control" id="contactName">
+                            <input type="text" name="name" class="form-control" id="contactName">
                             <label for="email">Contact email</label>
-                            <input type="text" name="contactEmail" class="form-control" id="contactEmail">
+                            <input type="text" name="email" class="form-control" id="contactEmail">
                             <label for="phone">Contact telefoon nummer</label>
-                            <input type="text" name="contactPhone" class="form-control" id="contactPhone">
+                            <input type="text" name="phone" class="form-control" id="contactPhone">
                             <label for="jobtitle">Contact werk titel</label>
-                            <input type="text" name="contactTitle" class="form-control" id="contactTitle">
+                            <input type="text" name="jobtitle" class="form-control" id="contactTitle">
     
                             <input type="submit" class="btn btn-info mt-2" value="aanmaken"/>
                         </div>

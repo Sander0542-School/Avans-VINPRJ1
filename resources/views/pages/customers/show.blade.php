@@ -39,7 +39,15 @@
                                 <td>{{ $address->city }}</td>
                                 <td>{{ $address->country }}</td>
                                 <td><a href="{{ route('customers.address.show', [$customer, $address]) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
-                                <td><a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+                                <td>
+                                    <form method="POST" action="{{ route('customers.address.destroy', [$customer, $address]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     @else
@@ -69,7 +77,15 @@
                                 <th scope="row">{{ $contact->id }}</th>
                                 <td>{{ $contact->name }}</td>
                                 <td><a href="{{ route('customers.contacts.show', [$customer, $contact]) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
-                                <td><a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+                                <td>
+                                    <form method="POST" action="{{ route('customers.contacts.destroy', [$customer, $contact]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     @else

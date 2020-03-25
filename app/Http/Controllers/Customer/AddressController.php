@@ -67,7 +67,7 @@ class AddressController extends Controller
      */
     public function show(Customer $customer, CustomerAddress $address)
     {
-        return view('pages.customers.address.show')->with('address', $address);
+        return view('pages.customers.address.show')->with('customer', $customer)->with('address', $address);
     }
 
     /**
@@ -77,9 +77,27 @@ class AddressController extends Controller
      * @param  \App\Models\CustomerAddress  $customerAddress
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CustomerAddress $customerAddress)
+    public function update(Request $request, Customer $customer, CustomerAddress $address)
     {
-        //
+        $data = $request->validate([
+            'street' => ['required', 'string'],
+            'number' => ['required', 'integer'],
+            'country' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'state' => ['required', 'string'],
+            'zipcode' => ['required', 'string'],
+        ]);
+
+        $addressDatabase = CustomerAddress::whereId($address->id)->first();
+
+        if ($addressDatabase != null) {
+            if ($addressDatabase->update($data)) {
+                return redirect()->route('customers.show', $customer)
+                    ->with('message', 'Het klant adres is geupdate');
+            }
+        }
+
+        return redirect()->back()->with('message', 'De klant adres kon niet geupdate worden');
     }
 
     /**
@@ -88,8 +106,12 @@ class AddressController extends Controller
      * @param  \App\Models\CustomerAddress  $customerAddress
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CustomerAddress $customerAddress)
+    public function destroy(Customer $customer, CustomerAddress $address)
     {
-        //
+        if ($address->delete()) {
+            return redirect()->route('customers.show', $customer)->with('message', 'Het klant adres is succesvol verwijderd');
+        }
+
+        return redirect()->route('customers.show', $customer)->with('message', 'Het klant adres kon niet worden verwijderd');
     }
 }
