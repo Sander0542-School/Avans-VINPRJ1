@@ -12,7 +12,7 @@
                             <h4 class="card-title text-center">Adres bewerken</h4>
                             <label for="addressStreet">Straat</label>
                             <input type="text" name="street" class="form-control" id="addressStreet" value="{{$address->street}}">
-                            <label for="addressNumber">huis nummer</label>
+                            <label for="addressNumber">Huisnummer</label>
                             <input type="number" name="number" class="form-control" id="addressNumber" value="{{$address->number}}">
                             <label for="addressCountry">Land</label>
                             <input type="text" name="country" class="form-control" id="addressCountry" value="{{$address->country}}">
