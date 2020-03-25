@@ -14,7 +14,7 @@
                             <input type="text" name="name" class="form-control" id="contactName">
                             <label for="email">Email</label>
                             <input type="text" name="email" class="form-control" id="contactEmail">
-                            <label for="phone">Contact telefoon nummer</label>
+                            <label for="phone">Telefoon</label>
                             <input type="text" name="phone" class="form-control" id="contactPhone">
                             <label for="jobtitle">Contact werk titel</label>
                             <input type="text" name="jobtitle" class="form-control" id="contactTitle">
