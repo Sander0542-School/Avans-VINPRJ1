@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title text-center">Contacten</h4>
-                            <label for="name">Contact naam</label>
+                            <label for="name">Naam</label>
                             <input type="text" name="name" class="form-control" id="contactName">
                             <label for="email">Contact email</label>
                             <input type="text" name="email" class="form-control" id="contactEmail">
