@@ -12,7 +12,7 @@
                             <h4 class="card-title text-center">Contacten</h4>
                             <label for="name">Naam</label>
                             <input type="text" name="name" class="form-control" id="contactName">
-                            <label for="email">Contact email</label>
+                            <label for="email">Email</label>
                             <input type="text" name="email" class="form-control" id="contactEmail">
                             <label for="phone">Contact telefoon nummer</label>
                             <input type="text" name="phone" class="form-control" id="contactPhone">
