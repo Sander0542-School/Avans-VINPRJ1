@@ -32,7 +32,7 @@
                             <tr>
                                 <th scope="row">{{ $customer->id }}</th>
                                 <td>{{ $customer->name }}</td>
-                                <td><a href="{{ route('customers.show', $customer) }}" class="btn btn-primary">&rArr;</a></td>
+                                <td><a href="{{ route('customers.show', $customer) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
                             </tr>
                         @endforeach
                     @else

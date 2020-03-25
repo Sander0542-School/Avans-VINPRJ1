@@ -27,6 +27,7 @@
                         <th scope="col">Stad</th>
                         <th scope="col">Land</th>
                         <th scope="col">Openen</th>
+                        <th scope="col">Verwijderen</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -37,7 +38,8 @@
                                 <td>{{ $address->number }}</td>
                                 <td>{{ $address->city }}</td>
                                 <td>{{ $address->country }}</td>
-                                <td><a href="{{ route('customers.address.show', [$customer, $address]) }}" class="btn btn-primary">&rArr;</a></td>
+                                <td><a href="{{ route('customers.address.show', [$customer, $address]) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
+                                <td><a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
                             </tr>
                         @endforeach
                     @else
@@ -57,6 +59,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Naam</th>
                         <th scope="col">Openen</th>
+                        <th scope="col">Verwijderen</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,7 +68,8 @@
                             <tr>
                                 <th scope="row">{{ $contact->id }}</th>
                                 <td>{{ $contact->name }}</td>
-                                <td><a href="{{ route('customers.contacts.show', [$customer, $contact]) }}" class="btn btn-primary">&rArr;</a></td>
+                                <td><a href="{{ route('customers.contacts.show', [$customer, $contact]) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
+                                <td><a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
                             </tr>
                         @endforeach
                     @else
