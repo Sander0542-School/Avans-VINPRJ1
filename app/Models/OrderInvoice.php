@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class OrderInvoice
- * 
+ *
  * @property int $order_id
  * @property bool $paid
- * 
+ *
  * @property Order $order
  *
  * @package App\Models
@@ -31,7 +31,8 @@ class OrderInvoice extends Model
 	];
 
 	protected $fillable = [
-		'paid'
+		'paid',
+		'order_id'
 	];
 
 	public function order()

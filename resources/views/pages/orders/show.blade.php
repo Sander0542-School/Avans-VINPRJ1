@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Bestelling Bewerken')])
+@extends('layouts.app', ['title' => 'Bestelling Bewerken ('.$order->id.')'])
 
 @section('content')
     <div class="container">
@@ -96,14 +96,26 @@
                             </div>
                         </div>
                     </form>
+
+                    <br />
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Factuur aanmaken</h4>
+                            <form method="POST" action="{{ route('orders.invoices.create', $order) }}">
+                                @csrf
+                                <input type="submit" class="btn btn-success" value="Aanmaken"/>
+                            </form>
+                        </div>
+                    </div>
                 @else
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Factuur</h4>
                             @if($order->order_invoice->paid)
-                                <p>Betaald</p>
+                                <p class="text-success">Deze factuur is reeds betaald!</p>
                             @else
-                                <p>Niet betaald</p>
+                                <p class="text-danger">Deze factuur is nog niet betaald!</p>
                             @endif
                         </div>
                     </div>
