@@ -44,7 +44,7 @@ class CustomerController extends Controller
         $customer = Customer::create($data);
 
         if ($customer->exists) {
-            return redirect()->route('customers.show', $customer)->with('message', 'Het bedrijf is aangemaakt');
+            return redirect()->route('customers.show', $customer)->with('message', 'De klant is toegevoegd');
         }
 
         return redirect()->back()->with('message', 'Het bedrijf kon niet aangemaakt worden');
