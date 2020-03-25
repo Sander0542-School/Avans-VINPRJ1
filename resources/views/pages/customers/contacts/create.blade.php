@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                <h1>Create new contacts</h1>
+                <h1>Contact toevoegen</h1>
                 <form method="POST" action="{{ route('customers.contacts.store', $customer) }}">
                     @csrf
                     <div class="card">
