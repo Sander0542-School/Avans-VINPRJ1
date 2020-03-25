@@ -9,7 +9,7 @@
                     @method('PUT')
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title text-center">Update contact</h4>
+                            <h4 class="card-title text-center">Contact bewerken</h4>
                             <label for="contactName">Contact naam</label>
                             <input type="text" name="name" class="form-control" id="contactName" value="{{$contact->name}}">
                             <label for="contactEmail">Contact email</label>
