@@ -94,7 +94,7 @@ class CustomerController extends Controller
             }
         }
 
-        return redirect()->back()->with('message', 'De klant naam kon niet geupdate worden');
+        return redirect()->back()->with('message', 'De gegevens van de klant konden niet worden bewerkt');
     }
 
     /**
