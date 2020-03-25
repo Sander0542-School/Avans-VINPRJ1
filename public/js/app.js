@@ -40202,6 +40202,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./custom */ "./resources/js/custom.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -40251,6 +40253,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/custom.js":
+/*!********************************!*\
+  !*** ./resources/js/custom.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  $(".clickable a").click(function (e) {
+    e.stopPropagation();
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -40269,8 +40286,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Projects\Avans Hogeschool\Avans-Timaflu\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Projects\Avans Hogeschool\Avans-Timaflu\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\GitHub\Sander0542\Avans-Timaflu\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\GitHub\Sander0542\Avans-Timaflu\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
