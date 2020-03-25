@@ -8,7 +8,7 @@
                     @csrf
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title text-center">Klant aanmaken</h4>
+                            <h4 class="card-title text-center">Klant toevoegen</h4>
                             <label for="addressCity">Bedrijf naam</label>
                             <input type="text" name="name" class="form-control" id="bedrijf_naam">
     
