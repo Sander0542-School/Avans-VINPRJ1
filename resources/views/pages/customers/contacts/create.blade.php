@@ -16,7 +16,7 @@
                             <input type="text" name="email" class="form-control" id="contactEmail">
                             <label for="phone">Telefoon</label>
                             <input type="text" name="phone" class="form-control" id="contactPhone">
-                            <label for="jobtitle">Contact werk titel</label>
+                            <label for="jobtitle">Functietitel</label>
                             <input type="text" name="jobtitle" class="form-control" id="contactTitle">
     
                             <input type="submit" class="btn btn-info mt-2" value="aanmaken"/>
