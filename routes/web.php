@@ -13,11 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home
 Route::get('', 'HomeController@index')->name('home.index');
 
+// Invoices
 Route::post('invoices/{order}/create', 'OrderController@createInvoice')->name('orders.invoices.create');
 Route::get('invoices', 'OrderController@invoices')->name('orders.invoices');
 
+// Orders
 Route::prefix('/orders/{order}')->name('orders.')->group(function () {
     Route::post('products', 'OrderController@storeProduct')->name('products.store');
     Route::put('products/{product}', 'OrderController@updateProduct')->name('products.update');
@@ -26,6 +29,11 @@ Route::prefix('/orders/{order}')->name('orders.')->group(function () {
 
 Route::resource('orders', 'OrderController')->except(['edit', 'update']);
 
+// Customers
 Route::resource('customers', 'CustomerController');
 
+// Products
 Route::resource('products', 'ProductController');
+
+// Suppliers
+Route::resource('suppliers', 'SupplierController')->only(['index', 'show', 'update']);

@@ -11,14 +11,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SupplierOrder
- * 
+ *
  * @property int $id
  * @property int $supplier_id
  * @property int $product_id
  * @property int $amount
  * @property float $price
  * @property Carbon $date
- * 
+ *
  * @property Product $product
  * @property Supplier $supplier
  *
@@ -32,7 +32,7 @@ class SupplierOrder extends Model
 	protected $casts = [
 		'supplier_id' => 'int',
 		'product_id' => 'int',
-		'amount' => 'int',
+		'quantity' => 'int',
 		'price' => 'float'
 	];
 
@@ -43,7 +43,7 @@ class SupplierOrder extends Model
 	protected $fillable = [
 		'supplier_id',
 		'product_id',
-		'amount',
+		'quantity',
 		'price',
 		'date'
 	];
