@@ -27,6 +27,8 @@ Route::prefix('/orders/{order}')->name('orders.')->group(function () {
     Route::delete('products/{product}', 'OrderController@destroyProduct')->name('products.destroy');
 });
 
+Route::get('orders/warehouse', 'WarehouseController@index')->name('orders.warehouse');
+
 Route::resource('orders', 'OrderController')->except(['edit', 'update']);
 
 // Customers

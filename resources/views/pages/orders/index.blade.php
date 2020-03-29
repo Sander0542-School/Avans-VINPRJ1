@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row text-center">
-            <div class="col-4 offset-2">
+            <div class="col-4">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Bestellingen aanmaken</h4>
@@ -16,6 +16,14 @@
                     <div class="card-body">
                         <h4 class="card-title">Facturen weergeven</h4>
                         <a href="{{ route('orders.invoices') }}" class="btn btn-primary"><i class="fa fa-eye"></i> Openen</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Magazijn overzicht</h4>
+                        <a href="{{ route('orders.warehouse') }}" class="btn btn-primary"><i class="fa fa-eye"></i> Openen</a>
                     </div>
                 </div>
             </div>
