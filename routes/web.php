@@ -13,11 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home
 Route::get('', 'HomeController@index')->name('home.index');
 
+// Invoices
 Route::post('invoices/{order}/create', 'OrderController@createInvoice')->name('orders.invoices.create');
 Route::get('invoices', 'OrderController@invoices')->name('orders.invoices');
 
+// Orders
 Route::prefix('/orders/{order}')->name('orders.')->group(function () {
     Route::post('products', 'OrderController@storeProduct')->name('products.store');
     Route::put('products/{product}', 'OrderController@updateProduct')->name('products.update');
@@ -26,10 +29,18 @@ Route::prefix('/orders/{order}')->name('orders.')->group(function () {
 
 Route::resource('orders', 'OrderController')->except(['edit', 'update']);
 
+// Customers
 Route::resource('customers', 'CustomerController');
 
+// Products
+Route::prefix('products/{product}')->name('products.')->group(function () {
+    Route::get('suppliers', 'ProductController@productSuppliers')->name('suppliers');
+    Route::get('link', 'ProductController@link')->name('link');
+    Route::post('addStock', 'ProductController@addStock')->name('addStock');
+    Route::post('linkSupplier', 'ProductController@linkSupplier')->name('linkSupplier');
+});
+
 Route::resource('products', 'ProductController')->except(['destroy']);
-Route::get('products/{product}/suppliers', 'ProductController@productSuppliers')->name('products.suppliers');
-Route::get('products/{product}/link', 'ProductController@link')->name('products.link');
-Route::post('products/{product}/addStock', 'ProductController@addStock')->name('products.addStock');
-Route::post('products/{product}/linkSupplier', 'ProductController@linkSupplier')->name('products.linkSupplier');
+
+// Suppliers
+Route::resource('suppliers', 'SupplierController')->only(['index', 'show', 'update']);
