@@ -82,7 +82,7 @@ class AddressController extends Controller
 
         if ($addressDatabase != null) {
             if ($addressDatabase->update($data)) {
-                return redirect()->route('customers.show', $customer)
+                return redirect()->route('customers.show', $address->customer)
                     ->with('message', 'Het klant adres is geupdate');
             }
         }
@@ -99,9 +99,9 @@ class AddressController extends Controller
     public function destroy(Customer $customer, CustomerAddress $address)
     {
         if ($address->delete()) {
-            return redirect()->route('customers.show', $customer)->with('message', 'Het klant adres is succesvol verwijderd');
+            return redirect()->route('customers.show', $address->customer)->with('message', 'Het klant adres is succesvol verwijderd');
         }
 
-        return redirect()->route('customers.show', $customer)->with('message', 'Het klant adres kon niet worden verwijderd');
+        return redirect()->route('customers.show', $address->customer)->with('message', 'Het klant adres kon niet worden verwijderd');
     }
 }

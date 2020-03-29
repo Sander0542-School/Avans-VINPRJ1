@@ -30,7 +30,7 @@ class ContactsController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'email'],
-            'phone' => ['required', 'string', 'max:16'],
+            'phone' => ['required', 'string', 'max:20'],
             'jobtitle' => ['required', 'string', 'max:255'],
         ]);
 
@@ -41,7 +41,7 @@ class ContactsController extends Controller
         $customerContact = CustomerContact::create($data);
 
         if ($customerContact->exists) {
-            return redirect()->route('customers.show', $customer)->with('message', 'Het contact is toegevoegd');
+            return redirect()->route('customers.show', $contact->customer)->with('message', 'Het contact is toegevoegd');
         }
 
         return redirect()->back()->with('message', 'Het contact kon niet worden toegevoegd');
@@ -55,7 +55,7 @@ class ContactsController extends Controller
      */
     public function show(Customer $customer, CustomerContact $contact)
     {
-        return view('pages.customers.contacts.show')->with('customer', $customer)->with('contact', $contact);
+        return view('pages.customers.contacts.show')->with('customer', $contact->customer)->with('contact', $contact);
     }
 
     /**
@@ -70,7 +70,7 @@ class ContactsController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'email'],
-            'phone' => ['required', 'string', 'max:16'],
+            'phone' => ['required', 'string', 'max:20'],
             'jobtitle' => ['required', 'string', 'max:255'],
         ]);
 
@@ -78,7 +78,7 @@ class ContactsController extends Controller
 
         if ($addressDatabase != null) {
             if ($addressDatabase->update($data)) {
-                return redirect()->route('customers.show', $customer)
+                return redirect()->route('customers.show', $contact->customer)
                     ->with('message', 'Het klant contact is geupdate');
             }
         }
@@ -95,9 +95,9 @@ class ContactsController extends Controller
     public function destroy(Customer $customer, CustomerContact $contact)
     {
         if ($contact->delete()) {
-            return redirect()->route('customers.show', $customer)->with('message', 'Het klant contact is succesvol verwijderd');
+            return redirect()->route('customers.show', $contact->customer)->with('message', 'Het klant contact is succesvol verwijderd');
         }
 
-        return redirect()->route('customers.show', $customer)->with('message', 'Het klant contact kon niet worden verwijderd');
+        return redirect()->route('customers.show', $contact->customer)->with('message', 'Het klant contact kon niet worden verwijderd');
     }
 }
