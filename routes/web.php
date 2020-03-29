@@ -36,4 +36,4 @@ Route::resource('customers', 'CustomerController');
 Route::resource('products', 'ProductController');
 
 // Suppliers
-Route::resource('suppliers', 'SupplierController')->only(['index', 'show', 'update']);
+Route::resource('suppliers', 'SupplierController')->only(['index', 'show', 'create', 'update']);
