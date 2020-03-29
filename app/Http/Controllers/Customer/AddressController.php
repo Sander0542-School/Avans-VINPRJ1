@@ -28,12 +28,12 @@ class AddressController extends Controller
     public function store(Request $request, Customer $customer)
     {
         $data = $request->validate([
-            'street' => ['required', 'string'],
-            'number' => ['required', 'integer'],
-            'country' => ['required', 'string'],
-            'city' => ['required', 'string'],
-            'state' => ['required', 'string'],
-            'zipcode' => ['required', 'string'],
+            'street' => ['required', 'string', 'max:255'],
+            'number' => ['required', 'string', 'max:11'],
+            'country' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'state' => ['required', 'string', 'max:255'],
+            'zipcode' => ['required', 'string', 'max:6'],
         ]);
 
         $data = array_merge($data, [
@@ -70,12 +70,12 @@ class AddressController extends Controller
     public function update(Request $request, Customer $customer, CustomerAddress $address)
     {
         $data = $request->validate([
-            'street' => ['required', 'string'],
-            'number' => ['required', 'integer'],
-            'country' => ['required', 'string'],
-            'city' => ['required', 'string'],
-            'state' => ['required', 'string'],
-            'zipcode' => ['required', 'string'],
+            'street' => ['required', 'string', 'max:255'],
+            'number' => ['required', 'string', 'max:11'],
+            'country' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'state' => ['required', 'string', 'max:255'],
+            'zipcode' => ['required', 'string', 'max:6'],
         ]);
 
         $addressDatabase = CustomerAddress::whereId($address->id)->first();

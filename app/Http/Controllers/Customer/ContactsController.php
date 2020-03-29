@@ -28,10 +28,10 @@ class ContactsController extends Controller
     public function store(Request $request, Customer $customer)
     {
         $data = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'string'],
-            'phone' => ['required', 'string'],
-            'jobtitle' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255', 'email'],
+            'phone' => ['required', 'string', 'max:16'],
+            'jobtitle' => ['required', 'string', 'max:255'],
         ]);
 
         $data = array_merge($data, [
@@ -68,10 +68,10 @@ class ContactsController extends Controller
     public function update(Request $request, Customer $customer, CustomerContact $contact)
     {
         $data = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'string'],
-            'phone' => ['required', 'string'],
-            'jobtitle' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255', 'email'],
+            'phone' => ['required', 'string', 'max:16'],
+            'jobtitle' => ['required', 'string', 'max:255'],
         ]);
 
         $addressDatabase = CustomerContact::whereId($contact->id)->first();
