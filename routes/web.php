@@ -33,7 +33,14 @@ Route::resource('orders', 'OrderController')->except(['edit', 'update']);
 Route::resource('customers', 'CustomerController');
 
 // Products
-Route::resource('products', 'ProductController');
+Route::prefix('products/{product}')->name('products.')->group(function () {
+    Route::get('suppliers', 'ProductController@productSuppliers')->name('suppliers');
+    Route::get('link', 'ProductController@link')->name('link');
+    Route::post('addStock', 'ProductController@addStock')->name('addStock');
+    Route::post('linkSupplier', 'ProductController@linkSupplier')->name('linkSupplier');
+});
+
+Route::resource('products', 'ProductController')->except(['destroy']);
 
 // Suppliers
 Route::resource('suppliers', 'SupplierController')->only(['index', 'show', 'update']);

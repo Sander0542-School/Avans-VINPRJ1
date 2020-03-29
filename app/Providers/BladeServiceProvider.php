@@ -31,5 +31,9 @@ class BladeServiceProvider extends ServiceProvider
         Blade::directive('date', function ($date) {
             return "<?php echo date('d-m-Y', strtotime($date)); ?>";
         });
+
+        Blade::directive('centimeter', function ($value) {
+            return "<?php echo number_format($value, 2, ',', '.') . 'cm'; ?>";
+        });
     }
 }
