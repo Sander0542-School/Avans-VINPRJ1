@@ -21,7 +21,6 @@
                 <table class="table table-striped table-hover" id="products">
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Bestelling</th>
                         <th scope="col">Bestelcode</th>
                         <th scope="col">Naam</th>
                         <th scope="col">Prijs</th>
@@ -33,7 +32,6 @@
                     @if ($products)
                         @foreach ($products as $product)
                             <tr>
-                                <th scope="row">{{ $product->id }}</th>
                                 <th scope="row">{{ $product->ordercode }}</th>
                                 <th scope="row">{{ $product->name }}</th>
                                 <th scope="row">@money($product->price)</th>
@@ -43,7 +41,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="8">Er zijn geen producten.</td>
+                            <td colspan="5">Er zijn geen producten.</td>
                         </tr>
                     @endif
                     </tbody>
