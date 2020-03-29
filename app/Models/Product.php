@@ -86,4 +86,14 @@ class Product extends Model
 		return $this->belongsToMany(Supplier::class, 'supplier_products')
 					->withPivot('price');
 	}
+
+    /**
+     * Whether the order has a invoice
+     *
+     * @return bool
+     */
+    public function hasSupplier()
+    {
+        return SupplierProduct::where('product_id', $this->id)->exists();
+    }
 }

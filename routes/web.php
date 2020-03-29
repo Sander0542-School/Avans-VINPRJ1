@@ -13,15 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home
 Route::get('', 'HomeController@index')->name('home.index');
 
+// Invoices
 Route::post('invoices/{order}/create', 'OrderController@createInvoice')->name('orders.invoices.create');
 Route::get('invoices', 'OrderController@invoices')->name('orders.invoices');
 
-Route::resource('orders', 'OrderController');
-Route::post('orders/{order}/products', 'OrderController@storeProduct')->name('orders.products.store');
-Route::put('orders/{order}/products/{product}', 'OrderController@updateProduct')->name('orders.products.update');
-Route::delete('orders/{order}/products/{product}', 'OrderController@destroyProduct')->name('orders.products.destroy');
+// Orders
+Route::prefix('/orders/{order}')->name('orders.')->group(function () {
+    Route::post('products', 'OrderController@storeProduct')->name('products.store');
+    Route::put('products/{product}', 'OrderController@updateProduct')->name('products.update');
+    Route::delete('products/{product}', 'OrderController@destroyProduct')->name('products.destroy');
+});
+
+Route::get('orders/warehouse', 'WarehouseController@index')->name('orders.warehouse');
+
 Route::resource('orders', 'OrderController')->except(['edit', 'update']);
 
 Route::prefix('customers/{customer}')->name('customers.')->namespace('Customer')->group(function() {
@@ -31,4 +38,15 @@ Route::prefix('customers/{customer}')->name('customers.')->namespace('Customer')
 
 Route::resource('customers', 'CustomerController');
 
-Route::resource('products', 'ProductController');
+// Products
+Route::prefix('products/{product}')->name('products.')->group(function () {
+    Route::get('suppliers', 'ProductController@productSuppliers')->name('suppliers');
+    Route::get('link', 'ProductController@link')->name('link');
+    Route::post('addStock', 'ProductController@addStock')->name('addStock');
+    Route::post('linkSupplier', 'ProductController@linkSupplier')->name('linkSupplier');
+});
+
+Route::resource('products', 'ProductController')->except(['destroy']);
+
+// Suppliers
+Route::resource('suppliers', 'SupplierController')->only(['index', 'show', 'update']);
