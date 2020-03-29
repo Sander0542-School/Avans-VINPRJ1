@@ -29,11 +29,11 @@ class AddressController extends Controller
     {
         $data = $request->validate([
             'street' => ['required', 'string', 'max:255'],
-            'number' => ['required', 'string', 'max:11'],
+            'number' => ['required', 'string', 'max:11', 'regex:/[0-9]+[a-z]*?$/'],
             'country' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
             'state' => ['required', 'string', 'max:255'],
-            'zipcode' => ['required', 'string', 'max:6'],
+            'zipcode' => ['required', 'string', 'max:7', 'regex:/[0-9]{4}\s?[A-Z]{2}$/'],
         ]);
 
         $data = array_merge($data, [
@@ -71,11 +71,11 @@ class AddressController extends Controller
     {
         $data = $request->validate([
             'street' => ['required', 'string', 'max:255'],
-            'number' => ['required', 'string', 'max:11'],
+            'number' => ['required', 'string', 'max:11', 'regex:/[0-9]+[a-z]*?$/'],
             'country' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
             'state' => ['required', 'string', 'max:255'],
-            'zipcode' => ['required', 'string', 'max:6'],
+            'zipcode' => ['required', 'string', 'max:7', 'regex:/[0-9]{4}\s?[A-Z]{2}$/'],
         ]);
 
         $addressDatabase = CustomerAddress::whereId($address->id)->first();
