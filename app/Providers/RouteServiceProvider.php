@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use App\Models\CustomerAddress;
+use App\Models\CustomerContacts;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -30,9 +32,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+        Route::model('address', CustomerAddress::class);
+        Route::model('contacts', CustomerContacts::class);
     }
 
     /**

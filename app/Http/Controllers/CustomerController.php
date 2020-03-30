@@ -14,7 +14,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::orderBy('name')->paginate(25);
+        
+        return view('pages.customers.index')->with('customers', $customers);
     }
 
     /**
@@ -24,7 +26,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.customers.create');
     }
 
     /**
@@ -35,7 +37,17 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string'],
+        ]);
+
+        $customer = Customer::create($data);
+
+        if ($customer->exists) {
+            return redirect()->route('customers.show', $customer)->with('message', 'De klant is toegevoegd');
+        }
+
+        return redirect()->back()->with('message', 'De klant kon niet worden toegevoegd');
     }
 
     /**
@@ -46,18 +58,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Customer $customer)
-    {
-        //
+        return view('pages.customers.show')->with('customer', $customer);
     }
 
     /**
@@ -69,17 +70,14 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
-    }
+        $data = $request->validate([
+            'name' => ['required', 'string'],
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Customer $customer)
-    {
-        //
+        if ($customer->update($data)) {
+            return redirect()->route('customers.show', $customer)->with('message', 'De gegevens van de klant zijn bewerkt');
+        }
+
+        return redirect()->back()->with('message', 'De gegevens van de klant konden niet worden bewerkt');
     }
 }

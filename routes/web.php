@@ -31,7 +31,11 @@ Route::get('orders/warehouse', 'WarehouseController@index')->name('orders.wareho
 
 Route::resource('orders', 'OrderController')->except(['edit', 'update']);
 
-// Customers
+Route::prefix('customers/{customer}')->name('customers.')->namespace('Customer')->group(function() {
+  Route::resource('address', 'AddressController');
+  Route::resource('contacts', 'ContactsController');
+});
+
 Route::resource('customers', 'CustomerController');
 
 // Products
