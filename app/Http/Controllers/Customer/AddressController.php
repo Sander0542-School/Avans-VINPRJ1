@@ -57,7 +57,7 @@ class AddressController extends Controller
      */
     public function show(Customer $customer, CustomerAddress $address)
     {
-        return view('pages.customers.address.show')->with('customer', $customer)->with('address', $address);
+        return view('pages.customers.address.show')->with('address', $address);
     }
 
     /**
@@ -78,13 +78,8 @@ class AddressController extends Controller
             'zipcode' => ['required', 'string', 'max:7', 'regex:/[0-9]{4}\s?[A-Z]{2}$/'],
         ]);
 
-        $addressDatabase = CustomerAddress::whereId($address->id)->first();
-
-        if ($addressDatabase != null) {
-            if ($addressDatabase->update($data)) {
-                return redirect()->route('customers.show', $address->customer)
-                    ->with('message', 'Het klant adres is geupdate');
-            }
+        if ($address->update($data)) {
+            return redirect()->route('customers.show', $address->customer)->with('message', 'Het klant adres is geupdate');
         }
 
         return redirect()->back()->with('message', 'De klant adres kon niet geupdate worden');
