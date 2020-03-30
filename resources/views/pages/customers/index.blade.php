@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <hr />
+        <hr/>
 
         <div class="row">
             <div class="col-12">
@@ -23,21 +23,19 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Naam</th>
-                        <th scope="col">Openen</th>
                     </tr>
                     </thead>
                     <tbody>
                     @if ($customers != null)
                         @foreach ($customers as $customer)
-                            <tr>
+                            <tr class="clickable" onclick="window.location.href = '{{ route('customers.show', $customer) }}'">
                                 <th scope="row">{{ $customer->id }}</th>
                                 <td>{{ $customer->name }}</td>
-                                <td><a href="{{ route('customers.show', $customer) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="8">Er zijn geen klanten gevonden</td>
+                            <td colspan="2">Er zijn geen klanten gevonden</td>
                         </tr>
                     @endif
                     </tbody>

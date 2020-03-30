@@ -28,7 +28,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="8">Er zijn geen leveranciers voor dit product.</td>
+                                    <td colspan="4">Er zijn geen leveranciers voor dit product.</td>
                                 </tr>
                             @endif
                             </tbody>

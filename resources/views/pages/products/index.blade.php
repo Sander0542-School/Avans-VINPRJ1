@@ -25,23 +25,21 @@
                         <th scope="col">Naam</th>
                         <th scope="col">Prijs</th>
                         <th scope="col">Voorraad</th>
-                        <th scope="col">Acties</th>
                     </tr>
                     </thead>
                     <tbody>
                     @if ($products)
                         @foreach ($products as $product)
-                            <tr>
+                            <tr class="clickable" onclick="window.location.href = '{{ route('products.show', $product) }}'">
                                 <th scope="row">{{ $product->ordercode }}</th>
                                 <th scope="row">{{ $product->name }}</th>
                                 <th scope="row">@money($product->price)</th>
                                 <th scope="row" class="text-{{ $product->stock < $product->minimum_stock ? 'danger' : 'default' }}">{{ $product->stock }}</th>
-                                <th scope="row"><a class="btn btn-primary" href="{{ route('products.show',  $product->id) }}"><i class="fa fa-eye"></i></a></th>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="5">Er zijn geen producten.</td>
+                            <td colspan="4">Er zijn geen producten gevonden</td>
                         </tr>
                     @endif
                     </tbody>

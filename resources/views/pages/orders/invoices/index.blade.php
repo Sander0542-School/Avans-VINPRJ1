@@ -30,14 +30,13 @@
                 <th scope="col">Bestelling</th>
                 <th scope="col">Klant</th>
                 <th scope="col">Totaalprijs</th>
-                <th scope="col">Betaald?</th>
-                <th scope="col">Openen</th>
+                <th scope="col">Betaald</th>
             </tr>
             </thead>
             <tbody>
             @if ($invoices != null)
                 @foreach ($invoices as $invoice)
-                    <tr>
+                    <tr class="clickable" onclick="window.location.href = '{{ route('orders.show', $invoice->order) }}'">
                         <th scope="row">{{ $invoice->order->id }}</th>
                         <td>{{ $invoice->order->customer->name }}</td>
                         <td>@money($invoice->order->total)</td>
@@ -46,12 +45,11 @@
                         @else
                             <td class="text-danger">Nee</td>
                         @endif
-                        <td><a href="{{ route('orders.show', $invoice->order) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 @endforeach
             @else
                 <tr>
-                    <td colspan="8">Er zijn geen facturen beschikbaar!</td>
+                    <td colspan="4">Er zijn geen facturen gevonden</td>
                 </tr>
             @endif
             </tbody>

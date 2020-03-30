@@ -41,23 +41,21 @@
                         <th scope="col">Klant</th>
                         <th scope="col">Datum</th>
                         <th scope="col">Totaalprijs</th>
-                        <th scope="col">Openen</th>
                     </tr>
                     </thead>
                     <tbody>
                     @if ($orders != null)
                         @foreach ($orders as $order)
-                            <tr>
+                            <tr class="clickable" onclick="window.location.href = '{{ route('orders.show', $order) }}'">
                                 <th scope="row">{{ $order->id }}</th>
                                 <td>{{ $order->customer->name }}</td>
                                 <td>@date($order->date)</td>
                                 <td>@money($order->total)</td>
-                                <td><a href="{{ route('orders.show', $order) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="8">Er zijn geen bestellingen beschikbaar!</td>
+                            <td colspan="4">Er zijn geen bestellingen gevonden</td>
                         </tr>
                     @endif
                     </tbody>
