@@ -38,9 +38,9 @@ class ContactsController extends Controller
             'customer_id' => $customer->id
         ]);
 
-        $customerContact = CustomerContact::create($data);
+        $contact = CustomerContact::create($data);
 
-        if ($customerContact->exists) {
+        if ($contact->exists) {
             return redirect()->route('customers.show', $contact->customer)->with('message', 'Het contact is toegevoegd');
         }
 
@@ -55,7 +55,7 @@ class ContactsController extends Controller
      */
     public function show(Customer $customer, CustomerContact $contact)
     {
-        return view('pages.customers.contacts.show')->with('customer', $contact->customer)->with('contact', $contact);
+        return view('pages.customers.contacts.show')->with('contact', $contact);
     }
 
     /**
@@ -73,14 +73,9 @@ class ContactsController extends Controller
             'phone' => ['required', 'string', 'max:20'],
             'jobtitle' => ['required', 'string', 'max:255'],
         ]);
-
-        $addressDatabase = CustomerContact::whereId($contact->id)->first();
-
-        if ($addressDatabase != null) {
-            if ($addressDatabase->update($data)) {
-                return redirect()->route('customers.show', $contact->customer)
-                    ->with('message', 'Het klant contact is geupdate');
-            }
+        
+        if ($contact->update($data)) {
+            return redirect()->route('customers.show', $contact->customer)->with('message', 'De gegevens van het contact zijn bewerkt');
         }
 
         return redirect()->back()->with('message', 'De gegevens van het contact konden niet bewerkt worden');
