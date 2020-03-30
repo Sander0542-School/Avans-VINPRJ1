@@ -74,13 +74,8 @@ class CustomerController extends Controller
             'name' => ['required', 'string'],
         ]);
 
-        $customerDatabase = Customer::whereId($customer->id)->first();
-
-        if ($customerDatabase != null) {
-            if ($customerDatabase->update($data)) {
-                return redirect()->route('customers.show', $customer)
-                    ->with('message', 'De gegevens van de klant zijn bewerkt');
-            }
+        if ($customer->update($data)) {
+            return redirect()->route('customers.show', $customer)->with('message', 'De gegevens van de klant zijn bewerkt');
         }
 
         return redirect()->back()->with('message', 'De gegevens van de klant konden niet worden bewerkt');
