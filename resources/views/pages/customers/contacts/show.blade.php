@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                <form method="POST" action="{{ route('customers.contacts.update', [$customer, $contact]) }}">
+                <form method="POST" action="{{ route('customers.contacts.update', [$contact->customer, $contact]) }}">
                     @csrf
                     @method('PUT')
                     <div class="card">
